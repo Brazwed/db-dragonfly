@@ -1,14 +1,12 @@
 services:
   dragonfly:
     image: docker.dragonflydb.io/dragonflydb/dragonfly
-    container_name: dragonfly
+    container_name: dragonfly_${COMPOSE_PROJECT_NAME:-default}
     restart: unless-stopped
-    env_file:
-      - .env
     command: >
       dragonfly
       --requirepass=${DF_PASS}
-      --maxmemory=256mb
+      --maxmemory=${DF_MAXMEMORY}
     ports:
       - "${DF_PORT}:6379"
     volumes:
