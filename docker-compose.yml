@@ -1,0 +1,24 @@
+services:
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly
+    container_name: dragonfly
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: >
+      dragonfly
+      --requirepass=${DF_PASS}
+      --maxmemory=256mb
+    ports:
+      - "${DF_PORT}:6379"
+    volumes:
+      - ./data:/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${DF_PASS}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
