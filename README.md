@@ -1,48 +1,35 @@
 # db-dragonfly
 
-DragonflyDB Docker container pré-configurado. Alternativa moderna ao Redis, pronta pra usar.
+DragonflyDB Docker container pre-configured. Modern Redis alternative, ready to use.
 
-## Uso rápido
+## Quick Start
 
 ```bash
-git clone https://github.com/seu-user/db-dragonfly.git
+git clone https://github.com/Brazwed/db-dragonfly.git
 cd db-dragonfly
-./start.sh up
-./info.sh
+docker compose up -d
 ```
 
-## Comandos
-
-| Comando | Descrição |
-|---------|-----------|
-| `./start.sh up` | Iniciar (cria .env automaticamente) |
-| `./start.sh down` | Parar |
-| `./start.sh restart` | Reiniciar |
-| `./start.sh logs` | Acompanhar logs |
-| `./start.sh status` | Status do container |
-| `./start.sh shell` | Shell no container |
-| `./start.sh clean` | Remover dados (com confirmação) |
-| `./info.sh` | Dados de conexão |
-
-## Conexão padrão
+## Default Connection
 
 ```
 Host:     localhost
-Porta:    6379
-Senha:    dragonfly_dev_2026
+Port:     6379
+Pass:     dragonfly_dev_2026
 
 redis-cli -h localhost -p 6379 -a dragonfly_dev_2026
 ```
 
-## Configuração
+## Configuration
 
-Edite `.env` (criado automaticamente de `.env.example`):
+Edit `.env` (created automatically from `.env.example`):
 
 ```env
 DF_PORT=6379
 DF_PASS=dragonfly_dev_2026
+DF_MAXMEMORY=1024mb
 ```
 
-## Parte do Database Toolkit
+## Part of Database Toolkit
 
-Este repositório pode ser usado standalone ou junto com outros bancos via [Database](https://github.com/seu-user/Database).
+This repo can be used standalone or with other databases via [Database Toolkit](https://github.com/Brazwed/Database).
